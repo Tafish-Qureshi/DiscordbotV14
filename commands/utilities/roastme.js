@@ -37,11 +37,12 @@ const roast = [{
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('roast')
-        .setDescription('Replies with a roast!'),
+        .setDescription('Replies with a roast!')
+        .addUserOption(option => option.setName('target').setDescription('The user to roast')),
     async execute(interaction) {
         const randomIndex = Math.floor(Math.random() * roast.length);
-        const randomroast = roast[randomIndex];
-        const roastToSend = `${randomroast.roast}`;
-        await interaction.reply(roastToSend);
+        const randomRoast = roast[randomIndex];
+        await interaction.reply(randomRoast);
     },
 };
+
