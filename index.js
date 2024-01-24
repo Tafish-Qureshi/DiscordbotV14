@@ -1,10 +1,20 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+const {
+    Client,
+    Collection,
+    Events,
+    GatewayIntentBits,
+    ActivityType
+} = require('discord.js');
+const {
+    token
+} = require('./config.json');
 
 
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds]
+});
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
@@ -71,5 +81,27 @@ for (const file of eventFiles) {
     }
 }
 
+let status = [{
+        type: ActivityType.Streaming,
+        name: 'Ghostkalibur\'s Twitch',
+        url: 'https://www.twitch.tv/ghostkalibur',
+    },
+    {
+        type: ActivityType.PLAYING,
+        name: 'Visual Studio Code',
+    },
+    {
+        type: ActivityType.CustomStatus,
+        name: 'Being a Ghost',
+    }
+]
+client.on('ready', (c) => {
+    console.log(`Logged in as ${c.user.tag}`);
+
+    setInterval(() => {
+        let random = Math.floor(Math.random() * status.length);
+        client.user.setActivity(status[random]);
+    }, 10000);
+});
 
 client.login(token);

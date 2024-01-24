@@ -31,7 +31,16 @@ module.exports = {
             'My reply is no.',
             'My sources say no.',
             'Outlook not so good.',
-            'Very doubtful.'
+            'Very doubtful.',
+            'No.',
+            'Maybe.',
+            'I don\'t know.',
+            'I don\'t think so.',
+            'I\'m not sure.',
+            'I\'m not sure about that.',
+            'I\'m not sure about this.',
+            'I\'m not sure about it.',
+            'I\'m not sure about him.'
         ];
 
         const question = interaction.options.getString('question');
